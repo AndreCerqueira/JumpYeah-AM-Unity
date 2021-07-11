@@ -6,8 +6,9 @@ public class PlatformGenerator : MonoBehaviour
 {
     public GameObject platform;
     public GameObject platformMovelHorizontal;
+    public GameObject platformMovelVertical;
     public GameObject platformWithGravity;
-    Vector3 spawnPosition = new Vector3(0, -5, 0);
+    public Vector3 spawnPosition = new Vector3(0, -5, 0);
     int platformQuantity = 20;
     int platformCount = 0;
     float levelWidth = 2.25f;
@@ -50,17 +51,18 @@ public class PlatformGenerator : MonoBehaviour
             int randomChance = Random.Range(1, 20);
             int horizontalMovelChance = 0;
             int withGravityChance = 0;
+            int verticalMovelChance = 0;
             GameObject prefab = new GameObject();
 
             // horizontal Movel Chance
-            if (GameManager.score > 2000) {
-                if (GameManager.score < 4000) {
+            if (GameManager.score > 1000) {
+                if (GameManager.score < 3000) {
                     horizontalMovelChance = 2;
                 }
-                else if (GameManager.score < 5000) {
+                else if (GameManager.score < 4000) {
                     horizontalMovelChance = 3;
                 }
-                else if (GameManager.score < 6000) {
+                else if (GameManager.score < 5000) {
                     horizontalMovelChance = 4;
                 }
                 else {
@@ -69,14 +71,14 @@ public class PlatformGenerator : MonoBehaviour
             }
 
             // with gravity Chance
-            if (GameManager.score > 4000) {
-                if (GameManager.score < 6000) {
+            if (GameManager.score > 3000) {
+                if (GameManager.score < 5000) {
                     withGravityChance = 2;
                 }
-                else if (GameManager.score < 8000) {
+                else if (GameManager.score < 7000) {
                     withGravityChance = 3;
                 }
-                else if (GameManager.score < 9000) {
+                else if (GameManager.score < 8000) {
                     withGravityChance = 4;
                 }
                 else {
@@ -84,10 +86,21 @@ public class PlatformGenerator : MonoBehaviour
                 }
             }
 
+            // vertical Movel Chance
+            if (GameManager.score > 5000) {
+                if (GameManager.score < 7000) {
+                    verticalMovelChance = 2;
+                } else {
+                    verticalMovelChance = 3;
+                }
+            }
+
             if (horizontalMovelChance != 0 && randomChance < horizontalMovelChance)
                 prefab = platformMovelHorizontal;
             else if (withGravityChance != 0 && (randomChance < withGravityChance + horizontalMovelChance))
                 prefab = platformWithGravity;
+            else if (verticalMovelChance != 0 && (randomChance < withGravityChance + horizontalMovelChance + verticalMovelChance))
+                prefab = platformMovelVertical;
             else 
                 prefab = platform;
 

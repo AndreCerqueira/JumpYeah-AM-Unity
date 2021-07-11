@@ -7,7 +7,7 @@ public class Platform : MonoBehaviour
     // Variables
     public float jumpForce = 10f;
     GameObject camara;
-    GameObject platformDestroyer;
+    protected GameObject platformDestroyer;
 
     // Start is called before the first frame update
     protected virtual void Start() 

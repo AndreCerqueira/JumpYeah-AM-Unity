@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlatformWithGravity : Platform
 {
+    [SerializeField] private Sprite[] spriteSkins;
+
+    protected override void Start()
+    {
+        base.Start();
+        GetComponent<SpriteRenderer>().sprite = spriteSkins[Random.Range(0, spriteSkins.Length)];
+    }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {

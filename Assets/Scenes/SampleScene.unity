@@ -189,6 +189,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &62958358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62958359}
+  m_Layer: 0
+  m_Name: Monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &62958359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62958358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1307871667}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &97592069
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1009,7 @@ GameObject:
   - component: {fileID: 1307871667}
   - component: {fileID: 1307871668}
   - component: {fileID: 1307871669}
+  - component: {fileID: 1307871670}
   m_Layer: 0
   m_Name: WorldGenerator
   m_TagString: Untagged
@@ -1001,6 +1032,7 @@ Transform:
   - {fileID: 2092404653}
   - {fileID: 863216163}
   - {fileID: 567145279}
+  - {fileID: 62958359}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1018,7 +1050,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platform: {fileID: 210066367133264341, guid: 26938d17f37798542819f607224c57ba, type: 3}
   platformMovelHorizontal: {fileID: 9050162392463171710, guid: e87015105673e984abb668cf008b8c07, type: 3}
+  platformMovelVertical: {fileID: 5490349217332922171, guid: e0c49850058223046b327ade619d3031, type: 3}
   platformWithGravity: {fileID: 3740831785239578641, guid: 2d27f06ff9f4a134fa14f23036b07dcc, type: 3}
+  spawnPosition: {x: 0, y: -5, z: 0}
 --- !u!114 &1307871669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,6 +1071,21 @@ MonoBehaviour:
   - {fileID: 3688274187720004968, guid: 84bd03bcbf783854492daab8b9530f63, type: 3}
   - {fileID: 528384388202468557, guid: e0bfd2fa5f0bae049b0dc1f3784a2e52, type: 3}
   - {fileID: 6414453437699955910, guid: 2e3d7a9e553319943b8043a4c17790a3, type: 3}
+--- !u!114 &1307871670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307871666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d16cf9b1520f34aab798fbd3c0dee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleMonster: {fileID: 2421649704393587187, guid: 500232833b86cbf489d9250f14928702, type: 3}
+  pillowMonster: {fileID: 7677797624895021224, guid: 809c7a224ed12514e9f80390acabb103, type: 3}
+  lastPositionY: 0
 --- !u!4 &1515315176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9019463937073317356, guid: e0bfd2fa5f0bae049b0dc1f3784a2e52, type: 3}
