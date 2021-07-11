@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class PlatformWithGravity : Platform
 {
-    // Variables
-    public float jumpForce = 10f;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
+
         if (collision.relativeVelocity.y <= 0)
         {
             Rigidbody2D rigidBody = collision.collider.GetComponent<Rigidbody2D>();
 
             if (rigidBody != null)
             {
-                Vector2 velocity = rigidBody.velocity;
-
-                velocity.y = jumpForce;
-                rigidBody.velocity = velocity;
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
         }
-
     }
 
 }
