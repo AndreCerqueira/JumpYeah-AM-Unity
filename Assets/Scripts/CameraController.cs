@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Variables
+    // Global Variables
     GameObject player;
     GameObject platformDestroyer;
     public float speed;
-
     Vector3 currentVelocity;
+
 
     void Start()
     {
+        // Get data
         player = GameObject.FindWithTag("Player");
         platformDestroyer = GameObject.Find("platformDestroyer");
     }
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-
+        // Follow the player y position with smooth
         if (player.transform.position.y > transform.position.y) 
         {
             Vector3 newPos = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);

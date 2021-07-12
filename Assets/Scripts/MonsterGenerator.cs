@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MonsterGenerator : MonoBehaviour
 {
-
+    // Global Variables
     public GameObject consoleMonster;
     public GameObject pillowMonster;
     public float lastPositionY;
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +16,8 @@ public class MonsterGenerator : MonoBehaviour
         StartCoroutine(monsterSpawn());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    // Spawn monster after random seconds and if the player is not afk
     IEnumerator monsterSpawn() 
     {
         int seconds = 15;

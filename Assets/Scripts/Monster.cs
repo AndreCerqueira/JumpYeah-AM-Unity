@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get data
         xLimit = Random.Range(0.5f, 1.75f);
         speed = Random.Range(1f, 1.5f);
         platformDestroyer = GameObject.Find("platformDestroyer");
@@ -20,12 +21,15 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Destroy monster
         if (platformDestroyer.transform.position.y > transform.position.y) {
             Destroy(gameObject);
         }
 
+        // Move monster
         transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
 
+        // Invert monster direction
         if (xLimit > 0) {
             if (transform.position.x > xLimit) {
                 xLimit *= -1;
@@ -42,6 +46,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // Kill the player after collision
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") == true) {

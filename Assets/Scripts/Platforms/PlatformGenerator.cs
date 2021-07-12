@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
 {
+    // Constants
+    const float levelWidth = 2.25f;
+    const float scoreIncreaseValue = 1000;
+
+    // Global Variables
     public GameObject platform;
     public GameObject platformMovelHorizontal;
     public GameObject platformMovelVertical;
     public GameObject platformWithGravity;
     public Vector3 spawnPosition = new Vector3(0, -5, 0);
     int platformQuantity = 20;
-    int platformCount = 0;
-    float levelWidth = 2.25f;
+    int platformCount = 1;
     float minY = 0.3f;
     float maxY = 1.5f;
+    float scoreNeededToIncreasePlatformDistance = 1000;
 
-    float scoreNeededToIncreasePlatformDistance;
 
     void Start() 
     {
-        scoreNeededToIncreasePlatformDistance = 1000;
+        // First platform is already in the scene
+        spawnPosition.y += Random.Range(minY, maxY);
 
-        for (int i = 0; i < platformQuantity; i++)
+        // Create initial platforms
+        for (int i = 1; i < platformQuantity; i++)
             createPlatform();
     }
 
 
     void Update() 
     {
+        // Increase the platform distances
         if (GameManager.score < 10000) 
         {
             if (GameManager.score > scoreNeededToIncreasePlatformDistance) 
             {
-                scoreNeededToIncreasePlatformDistance += 1000;
+                scoreNeededToIncreasePlatformDistance += scoreIncreaseValue;
                 minY += 0.075f;
                 maxY += 0.15f;
             }
@@ -43,9 +50,11 @@ public class PlatformGenerator : MonoBehaviour
 
     public void createPlatform() 
     {
+        // Set data
         spawnPosition.y += Random.Range(minY, maxY);
         spawnPosition.x = Random.Range(-levelWidth, levelWidth);
 
+        // Get the spawn chances for each platform
         #region chances
 
             int randomChance = Random.Range(1, 20);
@@ -95,6 +104,7 @@ public class PlatformGenerator : MonoBehaviour
                 }
             }
 
+            // Get the platform
             if (horizontalMovelChance != 0 && randomChance < horizontalMovelChance)
                 prefab = platformMovelHorizontal;
             else if (withGravityChance != 0 && (randomChance < withGravityChance + horizontalMovelChance))
@@ -106,12 +116,14 @@ public class PlatformGenerator : MonoBehaviour
 
         #endregion
 
+        // Spawn platform
         GameObject newPlatform = Instantiate(prefab, spawnPosition, Quaternion.identity);
         newPlatform.transform.parent = GameObject.Find("Platforms").transform;
         platformCount++;
     }
 
-
+    
+    // Destroy platform
     public void destroyPlatform(GameObject platform) 
     {
         platformCount--;

@@ -13,9 +13,9 @@ public class MovelHorizontalPlatform : Platform
     {
         base.Start();
 
+        // Get data
         xLimit = Random.Range(1, 2.25f);
         speed = Random.Range(1.25f, 1.75f);
-
     }
 
     // Update is called once per frame
@@ -25,6 +25,7 @@ public class MovelHorizontalPlatform : Platform
             
         transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
 
+        // Invert the platform x direction
         if (xLimit > 0) {
             if (transform.position.x > xLimit) {
                 xLimit *= -1;

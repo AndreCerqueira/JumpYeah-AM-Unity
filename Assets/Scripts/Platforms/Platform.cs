@@ -9,10 +9,11 @@ public class Platform : MonoBehaviour
     GameObject camara;
     protected GameObject platformDestroyer;
 
+
     // Start is called before the first frame update
     protected virtual void Start() 
     {
-        // Set data
+        // Get data
         camara = GameObject.FindWithTag("MainCamera");
         platformDestroyer = GameObject.Find("platformDestroyer");
     }
@@ -20,6 +21,7 @@ public class Platform : MonoBehaviour
 
     protected virtual void Update() 
     {
+        // Destroy platform
         if (platformDestroyer.transform.position.y > transform.position.y) {
             GetComponentInParent<PlatformGenerator>().destroyPlatform(gameObject);
         }
@@ -28,6 +30,7 @@ public class Platform : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        // Add jump force to the player
         if (collision.relativeVelocity.y <= 0)
         {
             Rigidbody2D rigidBody = collision.collider.GetComponent<Rigidbody2D>();

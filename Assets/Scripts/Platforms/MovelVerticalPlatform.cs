@@ -14,21 +14,23 @@ public class MovelVerticalPlatform : Platform
     {
         base.Start();
 
+        // Get data
         initialPositionY = transform.position.y;
         yLimit = Random.Range(1, 2.25f);
         speed = Random.Range(1.25f, 1.75f);
-
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        // Destroy vertical platform
         if (platformDestroyer.transform.position.y > initialPositionY && platformDestroyer.transform.position.y > transform.position.y) {
             GetComponentInParent<PlatformGenerator>().destroyPlatform(gameObject);
         }
             
         transform.position = new Vector2(transform.position.x, transform.position.y + speed * Time.deltaTime);
 
+        // Invert the platform y direction
         if (yLimit > 0) {
             if (transform.position.y > initialPositionY + yLimit) {
                 yLimit *= -1;

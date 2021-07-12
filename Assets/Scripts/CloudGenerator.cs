@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class CloudGenerator : MonoBehaviour
 {
+    // Global Variables
     private int tempo = 0;
     public int cloudCount;
-    private int cloudMax = 15;
-
+    public int cloudMax = 15;
     public float maxX;
-
     [SerializeField] private GameObject[] nuvem = new GameObject[3];
+
 
     void Start()
     {
+        // Get data
         maxX = GameObject.Find("maxX").transform.position.x + 2;
     }
 
-    void Update() {
 
+    void Update() {
+        
+        // Add a cloud if one has been removed
         if (cloudCount <= cloudMax) {
 
             tempo = Random.Range(3, 7);
@@ -29,9 +32,16 @@ public class CloudGenerator : MonoBehaviour
 
             Vector2 posNuvem = new Vector2(transform.position.x - 5, Random.Range(minY, maxY));
             GameObject newCloud = Instantiate(nuvem[i], posNuvem, Quaternion.identity);
+
+            if (GameManager.score > 20000) { //20000
+                int j = Random.Range(1, 6); // 20% of chance
+                if (j != 1)
+                    newCloud.GetComponent<SpriteRenderer>().sortingOrder = 15;
+            }
             
             newCloud.transform.parent = GameObject.Find("Clouds").transform;
             cloudCount++;
         }
     }
+
 }
