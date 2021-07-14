@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     private Text scoreText;
     private GameObject player;
 
+    [SerializeField]
+    private Transform maxX, minX;
+    private Vector2 screenBounds;
+    private Camera mainCamera;
     public static int score;
 
     // Start is called before the first frame update
@@ -19,6 +23,11 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         player = GameObject.Find("Player");
         scoreText = GameObject.Find("Score").GetComponent<Text>();
+        mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        minX.position = new Vector2(-screenBounds.x, minX.position.y);
+        maxX.position = new Vector2(screenBounds.x, maxX.position.y);
     }
 
     // Update is called once per frame
