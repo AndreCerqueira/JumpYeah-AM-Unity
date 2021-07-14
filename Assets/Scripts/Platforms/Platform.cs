@@ -37,8 +37,14 @@ public class Platform : MonoBehaviour
 
             if (rigidBody != null)
             {
-                Vector2 velocity = rigidBody.velocity;
+                collision.collider.GetComponent<AudioSource>().Play();
 
+                if (collision.collider.GetComponent<Player>().playerState == Player.state.cafe)
+                    jumpForce = 12.5f;
+                else
+                    jumpForce = 10f;
+
+                Vector2 velocity = rigidBody.velocity;
                 velocity.y = jumpForce;
                 rigidBody.velocity = velocity;
             }

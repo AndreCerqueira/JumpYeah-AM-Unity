@@ -50,7 +50,12 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") == true) {
-            other.GetComponent<BoxCollider2D>().isTrigger = true;
+            if (other.GetComponent<Player>().playerState != Player.state.energetico)
+            {
+                other.GetComponent<BoxCollider2D>().isTrigger = true;
+                GameObject stars = GameObject.Find("Defeat Stars");
+                stars.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
 

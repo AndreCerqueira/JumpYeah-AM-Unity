@@ -9,10 +9,6 @@ public class PlatformGenerator : MonoBehaviour
     const float scoreIncreaseValue = 1000;
 
     // Global Variables
-    public GameObject platform;
-    public GameObject platformMovelHorizontal;
-    public GameObject platformMovelVertical;
-    public GameObject platformWithGravity;
     public Vector3 spawnPosition = new Vector3(0, -5, 0);
     int platformQuantity = 20;
     int platformCount = 1;
@@ -20,6 +16,15 @@ public class PlatformGenerator : MonoBehaviour
     float maxY = 1.5f;
     float scoreNeededToIncreasePlatformDistance = 1000;
 
+    [Header("Power ups")]
+    [SerializeField] private GameObject coffee;
+    [SerializeField] private GameObject energyDrink;
+
+    [Header("Plataformas")]
+    public GameObject platform;
+    public GameObject platformMovelHorizontal;
+    public GameObject platformMovelVertical;
+    public GameObject platformWithGravity;
 
     void Start() 
     {
@@ -27,8 +32,23 @@ public class PlatformGenerator : MonoBehaviour
         spawnPosition.y += Random.Range(minY, maxY);
 
         // Create initial platforms
-        for (int i = 1; i < platformQuantity; i++)
-            createPlatform();
+        for (int i = 1; i < platformQuantity; i++) {
+
+            if (spawnPosition.y > -1.4f)  // -1.4
+                createPlatform();
+            else {
+                // Não permitir que as primeiras plataformas sejam no meio.
+                spawnPosition.y += Random.Range(minY, maxY);
+                do
+                    spawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                while (spawnPosition.x > -1 && spawnPosition.x < 1);
+                GameObject newPlatform = Instantiate(platform, spawnPosition, Quaternion.identity);
+                newPlatform.transform.parent = GameObject.Find("Platforms").transform;
+                platformCount++;
+            }
+            
+        }
+            
     }
 
 
@@ -116,6 +136,16 @@ public class PlatformGenerator : MonoBehaviour
 
         #endregion
 
+        #region power up spawn chances
+
+            int powerUpChance = (GameManager.score > 10000) ? Random.Range(1, 7) : Random.Range(1, 13);
+
+            if (prefab == platform && powerUpChance == 1) {
+                powerUpSpawn();
+            }
+
+        #endregion
+
         // Spawn platform
         GameObject newPlatform = Instantiate(prefab, spawnPosition, Quaternion.identity);
         newPlatform.transform.parent = GameObject.Find("Platforms").transform;
@@ -129,5 +159,18 @@ public class PlatformGenerator : MonoBehaviour
         platformCount--;
         createPlatform();
         Destroy(platform);
+    }
+
+
+    // Spawn power up
+    public void powerUpSpawn() 
+    {
+        int powerUpID = Random.Range(1,3);
+        GameObject powerUp = (powerUpID == 1) ? coffee : energyDrink;
+        
+        Vector2 pos = new Vector2(spawnPosition.x, spawnPosition.y + 0.1f);
+
+        GameObject newPowerUp = Instantiate(powerUp, pos, Quaternion.identity);
+        newPowerUp.transform.parent = GameObject.Find("PowerUps").transform;
     }
 }
