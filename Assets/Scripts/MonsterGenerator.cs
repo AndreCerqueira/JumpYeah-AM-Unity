@@ -37,7 +37,7 @@ public class MonsterGenerator : MonoBehaviour
                         int monsterID = Random.Range(1,3);
                         GameObject monster = (monsterID == 1) ? consoleMonster : pillowMonster;
                         
-                        Vector2 monsterPosition = new Vector2(spawnPosition.x, spawnPosition.y + 1);
+                        Vector2 monsterPosition = new Vector2(spawnPosition.x, spawnPosition.y + Random.Range(1f,4f));
 
                         GameObject newMonster = Instantiate(monster, monsterPosition, Quaternion.identity);
                         newMonster.transform.parent = GameObject.Find("Monsters").transform;

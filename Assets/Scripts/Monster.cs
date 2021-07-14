@@ -53,6 +53,8 @@ public class Monster : MonoBehaviour
             if (other.GetComponent<Player>().playerState != Player.state.energetico)
             {
                 other.GetComponent<BoxCollider2D>().isTrigger = true;
+                GameObject stars = GameObject.Find("Defeat Stars");
+                stars.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
     }

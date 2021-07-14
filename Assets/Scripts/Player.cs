@@ -16,22 +16,29 @@ public class Player : MonoBehaviour
     // Global Variables
     public float movementSpeed = 10f;
     Rigidbody2D rigidBody;
+    SpriteRenderer defeatStars;
     float movement = 0f;
     public state playerState = state.normal;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        defeatStars = GameObject.Find("Defeat Stars").GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        movement = Input.GetAxis("Horizontal") * movementSpeed;
-    
-        if (Input.GetAxis("Horizontal") < 0) 
-            GetComponent<SpriteRenderer>().flipX = true;
-        else if (Input.GetAxis("Horizontal") > 0) 
-            GetComponent<SpriteRenderer>().flipX = false;    
+        if (!defeatStars.enabled) {
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
+        
+            if (Input.GetAxis("Horizontal") < 0) 
+                GetComponent<SpriteRenderer>().flipX = true;
+            else if (Input.GetAxis("Horizontal") > 0) 
+                GetComponent<SpriteRenderer>().flipX = false;    
+        }
+        else
+            movement = 0;
+        
 
     }
 
