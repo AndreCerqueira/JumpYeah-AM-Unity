@@ -33,12 +33,6 @@ public class CloudGenerator : MonoBehaviour
             Vector2 posNuvem = new Vector2(transform.position.x - 5, Random.Range(minY, maxY));
             GameObject newCloud = Instantiate(nuvem[i], posNuvem, Quaternion.identity);
 
-            if (GameManager.score > 20000) { //20000
-                int j = Random.Range(1, 6); // 20% of chance
-                if (j != 1)
-                    newCloud.GetComponent<SpriteRenderer>().sortingOrder = 15;
-            }
-            
             newCloud.transform.parent = GameObject.Find("Clouds").transform;
             cloudCount++;
         }

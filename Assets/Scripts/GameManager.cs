@@ -80,12 +80,6 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (score > 20000) { //22500
-            CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
-            if (cloudGenerator.cloudMax != 100)
-                cloudGenerator.cloudMax = 100;
-        }
-
         if (GameManager.menuGameOver.GetComponent<CanvasGroup>().alpha > 0.1f) {
             if (score > recorde)
                 recorde = score;
@@ -190,11 +184,6 @@ public class GameManager : MonoBehaviour
 
         // resetar cor do background
         GameObject.Find("sky").GetComponent<SpriteRenderer>().color = new Color(153/255f, 217/255f, 234/255f); 
-
-        // resetar quantidade max de nuvens
-        CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
-        cloudGenerator.cloudMax = 15;
-        cloudGenerator.cloudCount = 0;
 
         playAgainButtonObj.SetActive(false);
         playAgainAlfinete.SetActive(true);
