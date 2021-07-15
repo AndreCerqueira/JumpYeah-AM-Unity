@@ -28,5 +28,11 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, newPos, ref currentVelocity, 0.3f * Time.deltaTime);
         }
 
+        if (player.transform.position.y < transform.position.y - 5) 
+        {
+            StartCoroutine(GameManager.DoFadeOut(GameManager.menuGame.GetComponent<CanvasGroup>()));
+            StartCoroutine(GameManager.DoFadeIn(GameManager.menuGameOver.GetComponent<CanvasGroup>()));
+            GameManager.saveRecord();
+        }
     }
 }

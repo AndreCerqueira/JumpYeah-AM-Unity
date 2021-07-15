@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 7edee4d6ab84627499f361d59c5d6b0f
+guid: ed6729f26f35fbe498af37758bdaaaea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5378277270616839095
-    second: defeat_stars_0
+      213: 5044122071167073304
+    second: music_0
   - first:
-      213: 4775151577185885116
-    second: defeat_stars_1
-  - first:
-      213: 3055788172177006972
-    second: defeat_stars_2
+      213: -8647941964268288710
+    second: music_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -56,7 +53,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 83, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -124,64 +121,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: defeat_stars_0
+      name: music_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 114
-        height: 40
+        y: 0
+        width: 83
+        height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 4, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b39caaaeaa73aa40800000000000000
-      internalID: 5378277270616839095
+      spriteID: 81cfe9f7c42500640800000000000000
+      internalID: 5044122071167073304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: defeat_stars_1
+      name: music_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 55
-        width: 114
-        height: 40
+        x: 41
+        y: 0
+        width: 81
+        height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 7, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb9fc24f0fb44240800000000000000
-      internalID: 4775151577185885116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: defeat_stars_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4
-        width: 114
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c71637ff627586a20800000000000000
-      internalID: 3055788172177006972
+      spriteID: a35489d2a965cf780800000000000000
+      internalID: -8647941964268288710
       vertices: []
       indices: 
       edges: []

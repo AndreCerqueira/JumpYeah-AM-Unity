@@ -10,13 +10,13 @@ public class Player : MonoBehaviour
     public enum state{
         normal,
         energetico,
-        cafe,
+        cafe
     }
 
     // Global Variables
     public float movementSpeed = 10f;
     Rigidbody2D rigidBody;
-    SpriteRenderer defeatStars;
+    public SpriteRenderer defeatStars;
     float movement = 0f;
     public state playerState = state.normal;
 
@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
         }
         else
             movement = 0;
-        
-
     }
 
     private void FixedUpdate()

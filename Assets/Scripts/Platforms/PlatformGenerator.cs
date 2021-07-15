@@ -11,9 +11,9 @@ public class PlatformGenerator : MonoBehaviour
     // Global Variables
     public Vector3 spawnPosition = new Vector3(0, -5, 0);
     int platformQuantity = 20;
-    int platformCount = 1;
-    float minY = 0.3f;
-    float maxY = 1.5f;
+    public int platformCount = 1;
+    public float minY = 0.3f;
+    public float maxY = 1.5f;
     float scoreNeededToIncreasePlatformDistance = 1000;
 
     [Header("Power ups")]
@@ -26,7 +26,7 @@ public class PlatformGenerator : MonoBehaviour
     public GameObject platformMovelVertical;
     public GameObject platformWithGravity;
 
-    void Start() 
+    public void Start() 
     {
         // First platform is already in the scene
         spawnPosition.y += Random.Range(minY, maxY);
