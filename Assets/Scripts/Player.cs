@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     }
 
     // Global Variables
-    public float movementSpeed = 10f;
+    public float movementSpeed = 25f;
     Rigidbody2D rigidBody;
     public SpriteRenderer defeatStars;
     float movement = 0f;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (!defeatStars.enabled) {
-            movement = Input.GetAxis("Horizontal") * movementSpeed;
+            movement = Input.acceleration.x * movementSpeed;
         
             if (Input.GetAxis("Horizontal") < 0) 
                 GetComponent<SpriteRenderer>().flipX = true;

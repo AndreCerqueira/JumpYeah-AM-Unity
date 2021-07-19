@@ -3157,7 +3157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14eb1802af021245bf42bf1865bf5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 25
   defeatStars: {fileID: 0}
   playerState: 0
 --- !u!50 &1270047888
