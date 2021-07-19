@@ -80,12 +80,6 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (score > 20000) { //22500
-            CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
-            if (cloudGenerator.cloudMax != 100)
-                cloudGenerator.cloudMax = 100;
-        }
-
         if (GameManager.menuGameOver.GetComponent<CanvasGroup>().alpha > 0.1f) {
             if (score > recorde)
                 recorde = score;
