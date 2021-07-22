@@ -22,7 +22,8 @@ public class NativeShareScript : MonoBehaviour {
         File.WriteAllBytes(filePath, ss.EncodeToPNG());
 
         Destroy(ss);
-        new NativeShare().AddFile(filePath).SetSubject("Jump Yeah").SetText("Consegui " + GameManager.score + " pontos!").Share();
+        new NativeShare().AddFile(filePath).SetSubject("Jump Yeah")
+            .SetText("Consegui " + GameManager.score + " pontos! E tu?").Share();
     }
 
     private void OnApplicationFocus(bool focus)
