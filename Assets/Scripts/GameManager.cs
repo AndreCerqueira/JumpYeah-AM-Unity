@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
     public static int score;
     public static int recorde;
 
+    int scoreSkyGap = 7500;
+    Color[] skyColors = new Color[3];
+    int actualColor = 0;
+    SpriteRenderer background;
+
     int gameVolumeValue;
     int musicVolumeValue;
 
@@ -40,6 +45,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
+        
         // Get data
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         player = GameObject.Find("Player");
@@ -55,6 +62,12 @@ public class GameManager : MonoBehaviour
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         minX.position = new Vector2(-screenBounds.x, minX.position.y);
         maxX.position = new Vector2(screenBounds.x, maxX.position.y);
+
+        background = GameObject.Find("sky").GetComponent<SpriteRenderer>();
+
+        skyColors[0] = new Color(153/255f, 217/255f, 234/255f); 
+        skyColors[1] = new Color(255/255f, 190/255f, 133/255f); 
+        skyColors[2] = new Color(98/255f, 90/255f, 174/255f); 
     }
 
     // Update is called once per frame
@@ -64,21 +77,21 @@ public class GameManager : MonoBehaviour
         if (player.transform.position.y * 100 > score)
             score = (int)(player.transform.position.y * 100);
 
-        if (score > 7500) {
-
-            SpriteRenderer background = GameObject.Find("sky").GetComponent<SpriteRenderer>();
-            Color newColor = background.color;
-
-            if (score > 20000)
-                newColor = new Color(153/255f, 217/255f, 234/255f); 
-            else if (score > 15000) 
-                newColor = new Color(98/255f, 90/255f, 174/255f); 
-            else
-                newColor = new Color(255/255f, 190/255f, 133/255f); 
-
-            background.color = Color.Lerp(background.color, newColor, Mathf.PingPong(Time.deltaTime, 1)); 
-            
+       
+        Color newColor = background.color;
+        
+        if (score < scoreSkyGap) {
+            newColor = skyColors[actualColor]; 
+        } else {
+            scoreSkyGap += 7500;
+            if (actualColor < 2)
+                actualColor++;
+            else 
+                actualColor = 0;
         }
+
+        background.color = Color.Lerp(background.color, newColor, Mathf.PingPong(Time.deltaTime, 1)); 
+
 
         if (GameManager.menuGameOver.GetComponent<CanvasGroup>().alpha > 0.1f) {
             if (score > recorde)
@@ -186,9 +199,9 @@ public class GameManager : MonoBehaviour
         GameObject.Find("sky").GetComponent<SpriteRenderer>().color = new Color(153/255f, 217/255f, 234/255f); 
 
         // resetar quantidade max de nuvens
-        CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
-        cloudGenerator.cloudMax = 15;
-        cloudGenerator.cloudCount = 0;
+        //CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
+        //cloudGenerator.cloudMax = 15;
+        //cloudGenerator.cloudCount = 0;
 
         playAgainButtonObj.SetActive(false);
         playAgainAlfinete.SetActive(true);

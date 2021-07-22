@@ -14,6 +14,7 @@ public class ChangeVolume : MonoBehaviour
 
     void Start() 
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         getDefs();
         musicVolumeText.text = atualizarText(musicVolumeValue);
         gameVolumeText.text = atualizarText(gameVolumeValue);
