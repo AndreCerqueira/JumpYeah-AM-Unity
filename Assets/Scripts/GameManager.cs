@@ -196,12 +196,13 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player>().playerState = Player.state.normal;
 
         // resetar cor do background
-        GameObject.Find("sky").GetComponent<SpriteRenderer>().color = new Color(153/255f, 217/255f, 234/255f); 
+        GameObject.Find("sky").GetComponent<SpriteRenderer>().color = new Color(153/255f, 217/255f, 234/255f);
 
         // resetar quantidade max de nuvens
         //CloudGenerator cloudGenerator = GameObject.Find("WorldGenerator").GetComponent<CloudGenerator>();
         //cloudGenerator.cloudMax = 15;
         //cloudGenerator.cloudCount = 0;
+        actualColor = 0;
 
         playAgainButtonObj.SetActive(false);
         playAgainAlfinete.SetActive(true);
